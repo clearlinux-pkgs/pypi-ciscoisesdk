@@ -4,7 +4,7 @@
 #
 Name     : pypi-ciscoisesdk
 Version  : 1.2.0
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/f6/3c/0a27e261e16a78643d50373dbab5f1947cc6f46a98d17a42b314548df774/ciscoisesdk-1.2.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f6/3c/0a27e261e16a78643d50373dbab5f1947cc6f46a98d17a42b314548df774/ciscoisesdk-1.2.0.tar.gz
 Summary  : Cisco Identity Services Engine Platform SDK
