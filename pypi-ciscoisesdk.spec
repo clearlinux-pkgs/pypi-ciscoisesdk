@@ -4,7 +4,7 @@
 #
 Name     : pypi-ciscoisesdk
 Version  : 2.0.5
-Release  : 23
+Release  : 24
 URL      : https://files.pythonhosted.org/packages/2e/10/a82a7264e3d86081706ed33131d154510e1d118c15fe8eca6d069fd96dc8/ciscoisesdk-2.0.5.tar.gz
 Source0  : https://files.pythonhosted.org/packages/2e/10/a82a7264e3d86081706ed33131d154510e1d118c15fe8eca6d069fd96dc8/ciscoisesdk-2.0.5.tar.gz
 Summary  : Cisco Identity Services Engine Platform SDK
@@ -67,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1665757704
+export SOURCE_DATE_EPOCH=1666793227
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -78,14 +78,16 @@ export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 export MAKEFLAGS=%{?_smp_mflags}
 pypi-dep-fix.py . xmltodict
+pypi-dep-fix.py . requests-toolbelt
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -msse2avx"
-export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -msse2avx "
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
 pypi-dep-fix.py . xmltodict
+pypi-dep-fix.py . requests-toolbelt
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 popd
@@ -97,6 +99,7 @@ mkdir -p %{buildroot}/usr/share/package-licenses/pypi-ciscoisesdk
 cp %{_builddir}/ciscoisesdk-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-ciscoisesdk/9901a51ee03eb167026e7a7a6f20ea2473b39328 || :
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 pypi-dep-fix.py %{buildroot} xmltodict
+pypi-dep-fix.py %{buildroot} requests-toolbelt
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
