@@ -1,5 +1,5 @@
 PKG_NAME := pypi-ciscoisesdk
-URL = https://files.pythonhosted.org/packages/fc/8c/7f54ac4f7862bced6718b49986c37c54f5fd1c44c727b868c6ae03f290b1/ciscoisesdk-2.0.6.tar.gz
+URL = https://files.pythonhosted.org/packages/99/b7/d3248bda9a0442db1e5b379a558bbe86b40e8f6beed74e71ae49d9fe6049/ciscoisesdk-2.0.7.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
