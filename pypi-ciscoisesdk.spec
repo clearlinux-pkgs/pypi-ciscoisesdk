@@ -4,7 +4,7 @@
 #
 Name     : pypi-ciscoisesdk
 Version  : 2.0.8
-Release  : 27
+Release  : 28
 URL      : https://files.pythonhosted.org/packages/97/c6/109f70351240267a500b114e4c12574f2ef4dd2f50aa03514bcceb59dcb4/ciscoisesdk-2.0.8.tar.gz
 Source0  : https://files.pythonhosted.org/packages/97/c6/109f70351240267a500b114e4c12574f2ef4dd2f50aa03514bcceb59dcb4/ciscoisesdk-2.0.8.tar.gz
 Summary  : Cisco Identity Services Engine Platform SDK
@@ -15,6 +15,9 @@ Requires: pypi-ciscoisesdk-python = %{version}-%{release}
 Requires: pypi-ciscoisesdk-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 BuildRequires : pypi(poetry_core)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 =============
@@ -67,15 +70,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667860052
+export SOURCE_DATE_EPOCH=1672263038
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 pypi-dep-fix.py . xmltodict
 pypi-dep-fix.py . requests-toolbelt
