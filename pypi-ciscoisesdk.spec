@@ -4,10 +4,10 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-ciscoisesdk
-Version  : 2.0.9
-Release  : 30
-URL      : https://files.pythonhosted.org/packages/ec/b0/8fbe6bb4110b92b7f17d28294e6c43605dc48b58f88abd18fbf04a30dee4/ciscoisesdk-2.0.9.tar.gz
-Source0  : https://files.pythonhosted.org/packages/ec/b0/8fbe6bb4110b92b7f17d28294e6c43605dc48b58f88abd18fbf04a30dee4/ciscoisesdk-2.0.9.tar.gz
+Version  : 2.0.10
+Release  : 31
+URL      : https://files.pythonhosted.org/packages/24/0d/8024eb2abe355ac40a6d2bd966bfd1d1077fef0fd801d2a5792fabbabd2d/ciscoisesdk-2.0.10.tar.gz
+Source0  : https://files.pythonhosted.org/packages/24/0d/8024eb2abe355ac40a6d2bd966bfd1d1077fef0fd801d2a5792fabbabd2d/ciscoisesdk-2.0.10.tar.gz
 Summary  : Cisco Identity Services Engine Platform SDK
 Group    : Development/Tools
 License  : MIT
@@ -15,7 +15,7 @@ Requires: pypi-ciscoisesdk-license = %{version}-%{release}
 Requires: pypi-ciscoisesdk-python = %{version}-%{release}
 Requires: pypi-ciscoisesdk-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : pypi(poetry)
+BuildRequires : pypi(poetry_core)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -60,10 +60,10 @@ python3 components for the pypi-ciscoisesdk package.
 
 
 %prep
-%setup -q -n ciscoisesdk-2.0.9
-cd %{_builddir}/ciscoisesdk-2.0.9
+%setup -q -n ciscoisesdk-2.0.10
+cd %{_builddir}/ciscoisesdk-2.0.10
 pushd ..
-cp -a ciscoisesdk-2.0.9 buildavx2
+cp -a ciscoisesdk-2.0.10 buildavx2
 popd
 
 %build
@@ -71,15 +71,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682002514
+export SOURCE_DATE_EPOCH=1690386588
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 pypi-dep-fix.py . xmltodict
 pypi-dep-fix.py . requests-toolbelt
