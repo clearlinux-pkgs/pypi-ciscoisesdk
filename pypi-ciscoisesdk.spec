@@ -5,7 +5,7 @@
 #
 Name     : pypi-ciscoisesdk
 Version  : 2.0.12
-Release  : 33
+Release  : 34
 URL      : https://files.pythonhosted.org/packages/28/ff/ee06336e1fd26b893500cf69bc17d7e96002aeebd45723bbe8441fa99577/ciscoisesdk-2.0.12.tar.gz
 Source0  : https://files.pythonhosted.org/packages/28/ff/ee06336e1fd26b893500cf69bc17d7e96002aeebd45723bbe8441fa99577/ciscoisesdk-2.0.12.tar.gz
 Summary  : Cisco Identity Services Engine Platform SDK
@@ -71,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1693250334
+export SOURCE_DATE_EPOCH=1693251736
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -83,6 +83,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonl
 export MAKEFLAGS=%{?_smp_mflags}
 pypi-dep-fix.py . xmltodict
 pypi-dep-fix.py . requests-toolbelt
+pypi-dep-fix.py . requests
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
 export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
@@ -92,6 +93,7 @@ export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
 pypi-dep-fix.py . xmltodict
 pypi-dep-fix.py . requests-toolbelt
+pypi-dep-fix.py . requests
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 popd
@@ -104,6 +106,7 @@ cp %{_builddir}/ciscoisesdk-%{version}/LICENSE %{buildroot}/usr/share/package-li
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 pypi-dep-fix.py %{buildroot} xmltodict
 pypi-dep-fix.py %{buildroot} requests-toolbelt
+pypi-dep-fix.py %{buildroot} requests
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
