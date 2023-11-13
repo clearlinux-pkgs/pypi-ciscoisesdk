@@ -6,10 +6,10 @@
 # autospec commit: 250a666
 #
 Name     : pypi-ciscoisesdk
-Version  : 2.1.0
-Release  : 36
-URL      : https://files.pythonhosted.org/packages/93/20/e5d3c18efe842c17bee83daf6197c0d131e2bc6c5f04c985b38fa1e3cece/ciscoisesdk-2.1.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/93/20/e5d3c18efe842c17bee83daf6197c0d131e2bc6c5f04c985b38fa1e3cece/ciscoisesdk-2.1.0.tar.gz
+Version  : 2.1.2
+Release  : 37
+URL      : https://files.pythonhosted.org/packages/c5/6b/1ab0b3252d9b4b23913b5c4053f9e0d02503ee63f7c5f3fdb283e362a1bb/ciscoisesdk-2.1.2.tar.gz
+Source0  : https://files.pythonhosted.org/packages/c5/6b/1ab0b3252d9b4b23913b5c4053f9e0d02503ee63f7c5f3fdb283e362a1bb/ciscoisesdk-2.1.2.tar.gz
 Summary  : Cisco Identity Services Engine Platform SDK
 Group    : Development/Tools
 License  : MIT
@@ -62,10 +62,10 @@ python3 components for the pypi-ciscoisesdk package.
 
 
 %prep
-%setup -q -n ciscoisesdk-2.1.0
-cd %{_builddir}/ciscoisesdk-2.1.0
+%setup -q -n ciscoisesdk-2.1.2
+cd %{_builddir}/ciscoisesdk-2.1.2
 pushd ..
-cp -a ciscoisesdk-2.1.0 buildavx2
+cp -a ciscoisesdk-2.1.2 buildavx2
 popd
 
 %build
@@ -73,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1699459221
+export SOURCE_DATE_EPOCH=1699894802
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
